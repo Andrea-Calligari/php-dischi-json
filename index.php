@@ -16,13 +16,30 @@
             <div class="container " >
                 <form action="" method="POST"  >
                     <div class=" container d-flex justify-content-center align-items-center gap-3">
-                        <input class="form-control " name="email"  type="text" placeholder="Inserisci qui il titolo del disco">
-                        <input @click="fetchData()" class="btn btn-primary " type="submit" value="Iscriviti">
+                        <input  v-model.trim="searchBar" class="form-control " name="email"  type="text" placeholder="Inserisci qui il titolo del disco">
+                        <input @click.prevent.default="fetchData" class="btn btn-primary " type="submit" value="Cerca">
                     </div>
                 </form>
-                <ul class="list">
-                    <li v-for="disk in disks">{{ disk.title }}</li>
-                </ul>
+                <div class="container-sm py-5">
+                    <div class="row" > 
+                        <div v-for="disk in disks" class="col-4 py-2">
+                            <div class="card p-2 " >  
+                                <div class="card-img text-center">
+                                    <img :src="disk.poster" alt="Immagine del disco corrente">
+                                    <h2>{{ disk.author }}</h2>
+                                </div> 
+                                <div class="card-body p-2 border-top text-center">
+                                   <ul class="list-unstyled ">
+                                    <li class="">{{ disk.title }}</li>
+                                    <li class="">{{ disk.genre }}</li>
+                                    <li class="">{{ disk.year }}</li>
+                                   </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <span v-else >Nessun risultato</span> -->
+                </div>
             </div>
         </section>
 
@@ -51,3 +68,9 @@
     <script src="./js/app.js"></script>
 </body>
 </html>
+
+<style>
+    img{
+        width: 100%;
+    }
+</style>

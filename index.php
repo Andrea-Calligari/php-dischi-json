@@ -14,14 +14,15 @@
     <div id="app">
         <section class="py-5  ">
             <div class="container " >
-                <form action="" method="POST"  >
+                <form action="./server.php" method="POST"  >
                     <div class=" container d-flex justify-content-center align-items-center gap-3">
-                        <input  v-model.trim="searchBar" class="form-control " name="email"  type="text" placeholder="Inserisci qui il titolo del disco">
+                        <input  v-model.trim="searchBar" class="form-control " name="input"  type="text" placeholder="Inserisci qui il titolo del disco">
                         <input @click.prevent.default="fetchData" class="btn btn-primary " type="submit" value="Cerca">
                     </div>
                 </form>
+                
                 <div class="container-sm py-5">
-                    <div class="row" > 
+                    <div class="row"  > 
                         <div v-for="disk in disks" class="col-4 py-2">
                             <div class="card p-2 " >  
                                 <div class="card-img text-center">
@@ -38,11 +39,11 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <span v-else >Nessun risultato</span> -->
+                    
                 </div>
             </div>
         </section>
-
+        
 
 
 
@@ -72,5 +73,8 @@
 <style>
     img{
         width: 100%;
+    }
+    .card:hover{
+        background-color: red;
     }
 </style>

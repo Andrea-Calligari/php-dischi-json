@@ -48,9 +48,19 @@ $disks = json_decode($string, true);
 //     ]
 // ];
 
-    //  $input = $_POST['input'] ?? '';
-    //  var_dump($input);
+     $input = $_POST['input'];
 
+
+    if ($input === null ) { // Passo tutti i dischi
+        $disksFilter = $disks;
+    } else {
+        $disksFilter = [];
+        foreach ($disks as $disk) {
+            if (str_contains(strtolower($disk['title']), strtolower($input))) {
+                $disksFilter[] = $disk;
+            }   
+        }
+    };
 
 //    $result = array_filter($disks, function ($disco) use ($input) {
 //      return stripos($disco['title'], $input) !== false;
@@ -59,7 +69,8 @@ $disks = json_decode($string, true);
 header('Content-Type: application/json');
 
 $res = [
-    'arrayDisks' => $disks,
+    'arrayDisks' => $disksFilter,
+    // 'input' => $input, debug
 ];
 
 echo json_encode($res);
